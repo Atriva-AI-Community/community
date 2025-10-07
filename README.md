@@ -101,3 +101,13 @@ Please see:
 
 > _"Learn. Build. Share. Empower."_  
 > — The **Atriva AI Community** Team
+
+---
+
+## License
+
+This repository is licensed under the [Apache License 2.0](./LICENSE).
+
+All content in this repository — including code, documentation, and files under
+`.github/` and `community/` — is released under this license unless stated otherwise.
+
