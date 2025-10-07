@@ -27,7 +27,16 @@ This repository serves as the **community hub** for:
 
 📁 Folder overview:
 
-```text community/ ├─ CONTRIBUTING.md → How to contribute ├─ CODE_OF_CONDUCT.md → Community behavior policy ├─ ROADMAP.md → Public roadmap for open projects ├─ assets/ → Logos, banners, and visuals └─ README.md → This file ```
+## 📁 Folder Structure
+
+```text
+community/
+├─ CONTRIBUTING.md       → How to contribute
+├─ CODE_OF_CONDUCT.md    → Community behavior policy
+├─ ROADMAP.md            → Public roadmap for open projects
+├─ assets/               → Logos, banners, and visuals
+└─ README.md             → This file
+```
 
 ---
 
