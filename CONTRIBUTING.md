@@ -1,3 +1,5 @@
+<!-- Licensed under the Apache License, Version 2.0 (see LICENSE) -->
+
 # 🛠️ Contributing to Atriva AI Community
 
 Thank you for your interest in contributing!  
