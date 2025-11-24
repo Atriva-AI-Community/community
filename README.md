@@ -1,5 +1,8 @@
 # 🌍 Atriva AI Community
 
+![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue)
+![GitHub discussions](https://img.shields.io/badge/discussions-active-green)
+
 Welcome to the **Atriva AI Community** — an open initiative helping developers and graduates learn how to **build real-world Edge AI products**.
 
 Our goal is to empower developers to think beyond algorithms — to understand the **entire lifecycle of an AI product**, from data to deployment.
@@ -18,25 +21,36 @@ We’re building a community that:
 
 ## 🪴 What Lives Here
 
-This repository serves as the **community hub** for:
+This repository serves as the **central community hub** for:
 - Contribution guidelines  
 - Code of Conduct  
 - Governance and collaboration rules  
 - Open roadmap (community edition)  
 - Learning and documentation links
 
-📁 Folder overview:
+---
 
-## 📁 Folder Structure
+## 📁 Folder Contents
 
 ```text
 community/
 ├─ CONTRIBUTING.md       → How to contribute
 ├─ CODE_OF_CONDUCT.md    → Community behavior policy
+├─ GOVERNANCE.md         → Decision-making and maintainers
+├─ MAINTAINERS.md        → Current maintainers and nomination rules
 ├─ ROADMAP.md            → Public roadmap for open projects
 ├─ assets/               → Logos, banners, and visuals
 └─ README.md             → This file
 ```
+
+---
+
+## 📂 GitHub Templates
+
+- [Issue Templates](./.github/ISSUE_TEMPLATE)
+- [Pull Request Template](./.github/PULL_REQUEST_TEMPLATE.md)
+- [Security Policy](./.github/SECURITY.md)
+- [Support Guide](./.github/SUPPORT.md)
 
 ---
 
