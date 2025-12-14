@@ -1,4 +1,9 @@
-# Beginner Issues (First 10 Starter Tasks)
+---
+title: Beginner Issues
+order: 5
+---
+
+# Beginner Issues
 
 This document lists beginner‑friendly issues intended for new contributors joining the Atriva AI Inference (OpenVINO) project. These are specifically chosen to help new grads understand the structure, codebase, and workflow with minimal complexity.
 

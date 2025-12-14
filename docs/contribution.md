@@ -1,4 +1,9 @@
-# Contribution Flow (Recommended)
+---
+title: Contribution Flow
+order: 4
+---
+
+# Contribution Flow
 
 ```
 Fork repo → Create branch → Work locally → Run tests → Commit → Push → PR → Review → Merge
