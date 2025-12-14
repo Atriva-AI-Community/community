@@ -1,7 +1,10 @@
-# OpenVINO Inference Backend
+<!--
+title: OpenVINO Overview
+order: 11
+-->
 
-This section documents how to use the OpenVINO backend inside the Atriva AI Community Runtime.  
-OpenVINO provides highly optimized inference on Intel CPU, iGPU (Xe Media/Compute), and NPU (Meteor Lake/AI Boost).
+This section documents how to use the OpenVINO backend inside the Atriva AI Community Runtime.
+OpenVINO provides highly optimized inference on Intel CPU, iGPU, and NPU (Meteor Lake/AI Boost).
 
 ## Structure
 
