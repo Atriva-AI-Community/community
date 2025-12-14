@@ -1,7 +1,7 @@
----
+<!--
 title: Atriva Core API
 order: 30
----
+-->
 
 Atriva exposes consistent APIs across applications.
 

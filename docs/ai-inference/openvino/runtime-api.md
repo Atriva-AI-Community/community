@@ -1,7 +1,7 @@
----
+<!--
 title: OpenVINO Inference API
 order: 15
----
+-->
 
 This page documents how the Atriva AI Inference Runtime integrates with OpenVINO and provides a unified API across CPU/GPU/NPU backends.
 

@@ -1,7 +1,7 @@
----
+<!--
 title: Beginner Issues
 order: 5
----
+-->
 
 # Beginner Issues
 

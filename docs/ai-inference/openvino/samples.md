@@ -1,7 +1,7 @@
----
+<!--
 title: OpenVINO Inference Samples
 order: 16
----
+-->
 
 This section provides minimal working examples for classification, object detection, and video processing using the Atriva OpenVINO backend.
 

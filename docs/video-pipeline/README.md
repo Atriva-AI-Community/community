@@ -1,7 +1,7 @@
----
+<!--
 title: Video Pipeline
 order: 20
----
+-->
 
 The video pipeline orchestrates data flow from input to output.
 

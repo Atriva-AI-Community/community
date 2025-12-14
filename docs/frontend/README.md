@@ -1,7 +1,7 @@
----
+<!--
 title: Frontend Dashboard
 order: 40
----
+-->
 
 Atriva provides a web-based UI for monitoring and analysis.
 

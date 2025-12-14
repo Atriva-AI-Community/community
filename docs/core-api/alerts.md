@@ -1,7 +1,7 @@
----
+<!--
 title: Alerts
 order: 33
----
+-->
 
 Alerts trigger on conditions such as:
 - Threshold exceeded

@@ -1,7 +1,7 @@
----
+<!--
 title: High-Level System Architecture
 order: 2
----
+-->
 
 # High-Level System Architecture
 

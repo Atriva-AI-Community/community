@@ -1,7 +1,7 @@
----
+<!--
 title: OpenVINO Installation
 order: 13
----
+-->
 
 This page covers installing OpenVINO and preparing your system for CPU/iGPU/NPU inference.
 

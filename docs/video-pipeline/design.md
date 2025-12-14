@@ -1,7 +1,7 @@
----
+<!--
 title: Pipeline Design
 order: 21
----
+-->
 
 Atriva pipelines are:
 - Event-driven

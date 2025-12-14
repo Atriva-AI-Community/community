@@ -1,7 +1,7 @@
----
+<!--
 title: OpenVINO Model Preparation
 order: 14
----
+-->
 
 This section describes how to convert ONNX models into OpenVINO IR format, quantize for CPU/NPU, and validate compatibility.
 

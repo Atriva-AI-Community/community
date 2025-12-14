@@ -1,7 +1,7 @@
----
+<!--
 title: Onboarding Checklist
 order: 3
----
+-->
 
 # Onboarding Checklist
 

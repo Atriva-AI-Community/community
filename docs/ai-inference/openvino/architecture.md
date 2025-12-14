@@ -1,7 +1,7 @@
----
+<!--
 title: OpenVINO Backend Architecture
 order: 12
----
+-->
 
 This document provides a high-level technical overview of how the Atriva AI Runtime integrates with OpenVINO.
 
