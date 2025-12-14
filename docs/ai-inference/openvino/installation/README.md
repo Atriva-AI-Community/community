@@ -1,107 +1,39 @@
+# Atriva AI API with OpenVINO Installation Guide 🚀
 
-# Installing OpenVINO for Atriva Inference Runtime
+This page covers installing OpenVINO and preparing your system for Atriva API Service.
 
-This page covers installing OpenVINO and preparing your system for CPU/iGPU/NPU inference.
+## **🔧 Setup & Installation**
 
----
-
-# 1. Install OpenVINO (Python)
-
-Use the official pip package:
-
-```bash
-python3 -m pip install --upgrade pip
-pip install openvino openvino-dev
+### **1️⃣ Clone the Repository**
+```sh
+git clone https://github.com/atriva-ai/atriva-ai-openvino.git
+cd atriva-ai-openvino
 ```
 
-This installs:
-- OpenVINO Runtime
-- Model Optimizer
-- INT8 calibration tools
-- CLI utilities
-
-# 2. Install OS Dependencies (Linux)
-
-Ubuntu 22.04+ (CPU + GPU + NPU)
-
-```bash
-sudo apt install -y \
-    build-essential \
-    cmake \
-    ocl-icd-opencl-dev \
-    intel-opencl-icd \
-    intel-level-zero-gpu level-zero \
-    clinfo
+### **2️⃣ Create a Virtual Environment**
+```sh
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+pip install -r requirements.txt
 ```
 
-Check GPU/NPU visibility:
+### **3️⃣ Download AI Models**
+```sh
+# Download all required model files
+cd tests
+python test_runner.py --download-models
 
-```bash
-clinfo | grep "Device"
+# Or download individual models
+python test_runner.py --model yolov8n --download
+python test_runner.py --model lprnet --download
+python test_runner.py --model vehicle_tracking --download
 ```
 
-# 3. Verify Your Installation
+**📝 Important**: Model binary files (.pt, .bin, .xml) are not included in the repository due to size constraints. They will be downloaded automatically when needed.
 
-Run:
-```python
-from openvino.runtime import Core
-ie = Core()
-print(ie.available_devices)
+### **4️⃣ Run the API Locally**
+```sh
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
-Expected output:
-```
-['CPU']
-['CPU', 'GPU']
-['CPU', 'GPU', 'NPU']   # Meteor Lake AI Boost
-```
-
-# 4. Meteor Lake NPU Support
-
-NPU requires:
-- OpenVINO 2024.4+
-- Linux kernel 6.8+
-- Intel AI Boost driver (comes with Ubuntu 22.04 HWE or 24.04)
-- Check NPU availability:
-
-```python
-print("NPU" in ie.available_devices)
-```
-
-# 5. Recommended Device Configurations
-CPU (most stable)
-
-```python
-compiled = core.compile_model(model, "CPU", {
-    "PERFORMANCE_HINT": "THROUGHPUT"
-})
-```
-
-iGPU
-
-```python
-compiled = core.compile_model(model, "GPU")
-```
-
-NPU (Meteor Lake)
-
-```python
-compiled = core.compile_model(model, "NPU")
-```
-
-# 6. Verify Model Optimizer Availability
-
-```bash
-mo --help
-```
-If MO works, your install is correct.
-
-Next Step
-
-➡️ Model Preparation
-
-
-
-
-
-
-
+Access the API documentation at:  
+👉 **http://localhost:8000/docs**

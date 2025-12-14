@@ -8,9 +8,25 @@ OpenVINO IR is required for:
 - iGPU/NPU execution
 - INT8 hardware acceleration
 
+
+## **🏗️ Model Build Architecture**
+
+The AI service uses a **pre-built model approach** for optimal performance:
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Development   │    │   Docker Build   │    │   Production    │
+│   (Host)        │    │   (Container)    │    │   (Runtime)     │
+├─────────────────┤    ├──────────────────┤    ├─────────────────┤
+│ • Scripts       │    │ • Copy models    │    │ • Load models   │
+│ • Model conv.   │───▶│ • Install deps   │───▶│ • Run inference │
+│ • Testing       │    │ • Fast build     │    │ • API endpoints │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+```
+
 ---
 
-# 1. Export Model to ONNX
+## 1. Export Model to ONNX
 
 ### PyTorch example:
 ```python
@@ -29,7 +45,7 @@ TensorFlow:
 python -m tf2onnx.convert --saved-model ./saved --output model.onnx
 ```
 
-# 2. Convert ONNX → OpenVINO IR
+## 2. Convert ONNX → OpenVINO IR
 
 Use Model Optimizer:
 
@@ -54,7 +70,7 @@ For FP32:
 mo --input_model model.onnx --data_type FP32
 ```
 
-# 3. Quantization (INT8)
+## 3. Quantization (INT8)
 
 Use POT (Post-Training Optimization Tool):
 
@@ -71,7 +87,7 @@ Benefits:
 - Faster CPU execution
 - Required for optimal NPU performance
 
-# 4. Validate the IR Model
+## 4. Validate the IR Model
 
 ```python
 from openvino.runtime import Core
@@ -81,7 +97,7 @@ model = ie.read_model("model.xml")
 compiled = ie.compile_model(model, "CPU")
 ```
 
-# 5. Check Input/Output Shapes
+## 5. Check Input/Output Shapes
 
 ```python
 for inp in model.inputs:
@@ -92,7 +108,7 @@ Ensure:
 - NCHW or NHWC matches your preprocessing
 - Dynamic shapes are allowed (-1)
 
-# 6. Layout Conversion
+## 6. Layout Conversion
 
 If your model expects NHWC but your pipeline is NCHW:
 
@@ -100,21 +116,19 @@ If your model expects NHWC but your pipeline is NCHW:
 mo --input_model model.onnx --layout=input(NHWC)
 ```
 
-# 7. Batch Size
+## 7. Batch Size
 
 Static batch:
 ```bash
 mo --input_model model.onnx --batch 4
 ```
 
-
-
 Dynamic batch:
 ```bash
 mo --input_model model.onnx --input_shape "[?,3,224,224]"
 ```
 
-# 8. Best Practices
+## 8. Best Practices
 
 Prefer FP16 for GPU/NPU
 Prefer INT8 for CPU (if accuracy drop acceptable)
