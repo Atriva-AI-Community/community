@@ -1,4 +1,9 @@
-# Quickstart Guide for Atriva AI Inference (OpenVINO)
+<!--
+title: Quickstart Guide
+order: 1
+-->
+
+# Quickstart Guide
 
 This quickstart focuses **only** on the core repo:
 [https://github.com/atriva-ai/ai-inference-ov](https://github.com/atriva-ai/ai-inference-ov)

@@ -1,62 +1,67 @@
-# Atriva AI – High-Level System Architecture
+<!--
+title: High-Level System Architecture
+order: 2
+-->
+
+# High-Level System Architecture
 
 This document explains how the **frontend**, **backend**, **video pipeline**, and **AI inference engine** fit together.
 
 Below is an ASCII diagram representing the major components.
 
 ```
-                               ┌───────────────────────────┐
-                               │        Frontend UI        │
-                               │  (Web App / Dashboard)    │
-                               │ - Streams status          │
-                               │ - Shows analytics         │
-                               │ - Manages devices/models  │
-                               └───────────────┬───────────┘
-                                               │ REST / WebSocket
-                                               ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│                            Backend Server                            │
-│                    (FastAPI / Python / OpenVINO)                     │
-│                                                                      │
-│   ┌─────────────────────────────┬──────────────────────────────────┐ │
-│   │ Device & Stream Manager     │ Model Manager                    │ │
-│   │ - Add/remove cameras        │ - Load built-in models           │ │
-│   │ - Configure pipelines       │ - Load user models               │ │
-│   └───────────────┬─────────────┴──────────────────────────────────┘ │
-│                   │                   ▲                              │
-│                   │                   │ Calls Inference API          │
-│                   ▼                   │                              │
-│        ┌─────────────────────────────────────────┐                   │
-│        │         Video Processing Pipeline       │                   │
-│        │ - Decode streams (RTSP/Files)           │                   │
-│        │ - Preprocess frames                     │                   │
-│        │ - Batch scheduling (optional)           │                   │
-│        └──────────────────────────┬──────────────┘                   │
-│                                   │                                  │
-│                                   ▼                                  │
-│                     ┌──────────────────────────────┐                 │
-│                     │      AI Inference Engine     │                 │
-│                     │  (Atriva AI – OV Runtime)    │                 │
-│                     │ - Executes OpenVINO models   │                 │
-│                     │ - Handles CPU / GPU / NPU    │                 │
-│                     │ - Post-processing of results │                 │
-│                     └──────────────────────────────┘                 │
-│                                   │                                  │
-│                                   ▼                                  │
-│                     ┌──────────────────────────────┐                 │
-│                     │   Results / Events / Frames  │                 │
-│                     └──────────────────────────────┘                 │
-│                                                                      │
-└──────────────────────────────────────────────────────────────────────┘
-                                               │
-                                               ▼
-                               ┌───────────────────────────┐
-                               │    Frontend Dashboard     │
-                               │ - Object boxes            │
-                               │ - Attributes              │
-                               │ - Tracking                │
-                               │ - Logs / analytics        │
-                               └───────────────────────────┘
+                         ┌───────────────────────────┐
+                         │        Frontend UI        │
+                         │  (Web App / Dashboard)    │
+                         │ - Streams status          │
+                         │ - Shows analytics         │
+                         │ - Manages devices/models  │
+                         └─────────────┬─────────────┘
+                                       │ REST / WebSocket
+                                       ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                                Backend Server                                    │
+│                        (FastAPI / Python / OpenVINO)                             │
+│                                                                                  │
+│         ┌─────────────────────────────┬──────────────────────────────────┐       │
+│         │ Device & Stream Manager     │ Model Manager                    │       │
+│         │ - Add/remove cameras        │ - Load built-in models           │       │
+│         │ - Configure pipelines       │ - Load user models               │       │
+│         └───────────────┬─────────────┴──────────────────────────────────┘       │
+│                         │                           ▲                            │
+│                         │                           │ Calls Inference API        │
+│                         ▼                           │                            │
+│                  ┌───────────────────────────────────────────┐                   │
+│                  │         Video Processing Pipeline         │                   │
+│                  │       - Decode streams (RTSP/Files)       │                   │
+│                  │       - Preprocess frames                 │                   │
+│                  │       - Batch scheduling (optional)       │                   │
+│                  └─────────────────────┬─────────────────────┘                   │
+│                                        │                                         │
+│                                        ▼                                         │
+│                         ┌──────────────────────────────┐                         │
+│                         │      AI Inference Engine     │                         │
+│                         │  (Atriva AI – OV Runtime)    │                         │
+│                         │ - Executes OpenVINO models   │                         │
+│                         │ - Handles CPU / GPU / NPU    │                         │
+│                         │ - Post-processing of results │                         │
+│                         └──────────────────────────────┘                         │
+│                                        │                                         │
+│                                        ▼                                         │
+│                         ┌──────────────────────────────┐                         │
+│                         │   Results / Events / Frames  │                         │
+│                         └──────────────────────────────┘                         │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+                                         │
+                                         ▼
+                            ┌───────────────────────────┐
+                            │    Frontend Dashboard     │
+                            │ - Object boxes            │
+                            │ - Attributes              │
+                            │ - Tracking                │
+                            │ - Logs / analytics        │
+                            └───────────────────────────┘
 ```
 
 ---

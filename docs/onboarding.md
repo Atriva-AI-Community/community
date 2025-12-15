@@ -1,6 +1,9 @@
----
+<!--
+title: Onboarding Checklist
+order: 3
+-->
 
-# Onboarding Checklist for New Contributors
+# Onboarding Checklist
 
 ### **Week 0 – Before Joining**
 

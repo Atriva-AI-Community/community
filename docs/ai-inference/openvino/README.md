@@ -41,6 +41,15 @@ atriva-ai-openvino/
 │── Dockerfile            # Docker configuration
 │── README.md             # Project documentation
 ```
+<!--
+title: OpenVINO Overview
+order: 11
+-->
+
+This section documents how to use the OpenVINO backend inside the Atriva AI Community Runtime.
+OpenVINO provides highly optimized inference on Intel CPU, iGPU, and NPU (Meteor Lake/AI Boost).
+
+## Structure
 
 ---
 
