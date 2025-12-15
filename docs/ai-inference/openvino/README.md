@@ -1,3 +1,46 @@
+# Atriva AI API with OpenVINO 🚀
+
+This is a FastAPI-based AI API that leverages **OpenVINO** for optimized deep learning inference.  
+It provides a RESTful interface for running AI models, such as object detection and image classification.
+
+## **⚡ Features**
+✅ FastAPI-based AI API  
+✅ OpenVINO optimization for inference  
+✅ Dockerized for easy deployment  
+✅ Comprehensive testing suite  
+✅ Multiple AI models supported:
+   - YOLOv8n Object Detection
+   - LPRNet License Plate Recognition
+   - Vehicle Detection and Tracking  
+
+## **📂 Project Structure**
+
+```plaintext
+atriva-ai-openvino/
+│── app/
+│   ├── routes.py         # API route definitions
+│   ├── services.py       # AI model processing logic
+│   ├── models.py         # Data models and schemas
+│   ├── model_capabilities.py  # Model capabilities and metadata
+│   ├── shared_data.py    # Shared data utilities
+│── models/               # Pretrained OpenVINO models
+│   ├── yolov8n/          # YOLOv8n object detection model
+│   ├── lprnet/           # LPRNet license plate recognition model
+│   └── vehicle_tracking/ # Vehicle detection and tracking model
+│── tests/                # Comprehensive testing suite
+│   ├── test_runner.py    # Main test runner with model download/conversion
+│   ├── test_yolov8_openvino.py   # YOLOv8 detection (supports n/s/m sizes)
+│   ├── test_vehicle_tracking.py  # Vehicle tracking (IoU + ByteTrack)
+│   ├── test_images/      # Sample test images
+│   ├── test_videos/      # Sample test videos
+│   ├── output/           # Generated output files
+│   └── requirements.txt  # Test dependencies
+│── main.py               # Entry point for FastAPI
+│── config.py             # Configuration settings
+│── requirements.txt      # Python dependencies
+│── Dockerfile            # Docker configuration
+│── README.md             # Project documentation
+```
 <!--
 title: OpenVINO Overview
 order: 11
@@ -8,55 +51,76 @@ OpenVINO provides highly optimized inference on Intel CPU, iGPU, and NPU (Meteor
 
 ## Structure
 
-- **Installation**  
-  Install OpenVINO, required system packages, and verify hardware support.
-
-- **Model Preparation**  
-  Convert models to OpenVINO IR, quantize (INT8/FP16), and validate model compatibility.
-
-- **Runtime API**  
-  How Atriva's unified inference runtime loads OpenVINO models, manages tensors, and schedules execution.
-
-- **Architecture**  
-  Backend design, device selection logic, async pipelines, and buffer lifecycle.
-
-- **Samples**  
-  Minimal working examples for classification, detection, and video analytics.
-
-## Supported Devices
-
-| Hardware | Supported | Notes |
-|---------|-----------|-------|
-| Intel CPU (x86_64) | Yes | Best performance with FP16/INT8 |
-| Intel iGPU | Yes | Uses OpenVINO GPU plugin |
-| Intel NPU (Meteor Lake AI Boost) | Yes | Requires OpenVINO 2024.4+ |
-| dGPU (Arc) | Yes | Uses Level Zero backend |
-
-## Minimum Requirements
-- Python 3.9+
-- OpenVINO 2024.4 or newer
-- ONNX 1.15+ (for model export)
-- Linux (Ubuntu 22.04+) or Windows 11
-
 ---
 
-# Quick Start
+## **🚀 Getting Started**
 
-```bash
-pip install openvino-dev
+### **Overview**
+
+This section covers everything you need to get the Atriva AI API up and running. Whether you're setting up locally, using Docker, or looking for the quickest way to start, you'll find the instructions here. The setup process includes cloning the repository, installing dependencies, downloading AI models, and running the service.
+
+### **🔧 Setup & Installation**
+
+#### **1️⃣ Clone the Repository**
+```sh
+git clone https://github.com/atriva-ai/atriva-ai-openvino.git
+cd atriva-ai-openvino
 ```
 
-# Check device availability:
-
+#### **2️⃣ Create a Virtual Environment**
+```sh
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+pip install -r requirements.txt
 ```
-from openvino.runtime import Core
-ie = Core()
-print(ie.available_devices)
+
+#### **3️⃣ Download AI Models**
+```sh
+# Download all required model files
+cd tests
+python test_runner.py --download-models
+
+# Or download individual models
+python test_runner.py --model yolov8n --download
+python test_runner.py --model lprnet --download
+python test_runner.py --model vehicle_tracking --download
 ```
 
-Continue with:
+**📝 Important**: Model binary files (.pt, .bin, .xml) are not included in the repository due to size constraints. They will be downloaded automatically when needed.
 
-➡️ Installation
+#### **4️⃣ Run the API Locally**
+```sh
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
+Access the API documentation at:  
+👉 **http://localhost:8000/docs**
 
-➡️ Model Preparation
+### **🐳 Running with Docker**
+
+#### **1️⃣ Build the Docker Image**
+```sh
+docker build -t atriva-ai-openvino .
+```
+
+#### **2️⃣ Run the Container**
+```sh
+docker run -d -p 8000:8000 --name ai-openvino-container atriva-ai-openvino
+```
+Now, visit:  
+👉 **http://localhost:8000/docs**
+
+### **🚀 Quick Start (Recommended)**
+
+**Models are pre-built and ready to use:**
+
+```sh
+# 1. Build Docker image (models already included)
+docker build -t atriva-ai-openvino .
+
+# 2. Run AI service
+docker run -d -p 8001:8001 --name ai-inference atriva-ai-openvino
+
+# 3. Test API
+curl http://localhost:8001/models
+```
 

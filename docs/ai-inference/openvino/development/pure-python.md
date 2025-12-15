@@ -1,12 +1,9 @@
-# Atriva AI Runtime — OpenVINO Inference API
+## 🐍 Pure Python OpenVINO Runtime Example
 
-This page documents how the Atriva AI Inference Runtime integrates with OpenVINO and provides a unified API across CPU/GPU/NPU backends.
+> **Note:** This section demonstrates how to work with OpenVINO via pure Python for development or debugging.  
+> You do **not** need this if using the Atriva API — this is for reference and low-level control only.
 
-The API abstracts device selection, memory formats, async execution, and tensor lifecycle so you can run any OpenVINO IR model with minimal boilerplate.
-
----
-
-# 1. Initialize Runtime
+## 1. Initialize Runtime
 
 ```python
 from atriva_inference import InferenceRuntime
@@ -14,7 +11,7 @@ from atriva_inference import InferenceRuntime
 runtime = InferenceRuntime(backend="openvino")
 ```
 
-Available backends:
+**Available backends:**
 
 | Name          | Devices                     |
 | ------------- | --------------------------- |
@@ -22,7 +19,7 @@ Available backends:
 | `onnxruntime` | CPU / CUDA                  |
 | `tensorrt`    | NVIDIA GPU                  |
 
-# 2. Load a Model
+## 2. Load a Model
 
 ```python
 model = runtime.load_model(
@@ -38,7 +35,7 @@ Device Options
 - "GPU" → iGPU or Arc
 - "NPU" → Meteor Lake AI Boost
 
-# 3. Prepare Input Tensors
+## 3. Prepare Input Tensors
 
 d into a runtime tensor:
 
@@ -54,7 +51,7 @@ The runtime will:
 - Convert layout when needed
 - Allocate device-optimized memory
 
-# 4. Execute Synchronously
+## 4. Execute Synchronously
 
 ```python
 output = model.run({"input": tensor})
@@ -67,7 +64,7 @@ Convert to numpy:
 output_np = output["output"].to_numpy()
 ```
 
-# 5. Execute Asynchronously
+## 5. Execute Asynchronously
 
 For pipelines (video analytics), async mode is preferred:
 
@@ -80,7 +77,7 @@ result = request.wait()
 
 wait() blocks until inference completes.
 
-# 6. Reusable Execution Stream (Performance Recommended)
+## 6. Reusable Execution Stream (Performance Recommended)
 
 ```python
 stream = model.create_stream()
@@ -92,7 +89,7 @@ for frame in frames:
 
 Stream keeps the model compiled and reuses device buffers.
 
-# 7. Working With Dynamic Shapes
+## 7. Working With Dynamic Shapes
 
 If your IR model has dynamic inputs:
 
@@ -105,7 +102,7 @@ tensor = runtime.tensor_from_numpy(
 
 OpenVINO compiles a new shape on first use, then caches it.
 
-# 8. Performance Profiling
+## 8. Performance Profiling
 ```python
 profile = model.get_profiling()
 print(profile)
@@ -116,7 +113,7 @@ Typical metrics:
 - Memory transfers
 - Device overhead
 
-# 9. Error Handling
+## 9. Error Handling
 ```python
 try:
     output = model.run(inputs)
@@ -124,5 +121,3 @@ except InferenceRuntimeError as e:
     print("Inference error:", e)
 ```
 
-Next Step
-➡️ Continue to Architecture
